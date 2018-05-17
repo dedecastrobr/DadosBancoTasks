@@ -1,4 +1,4 @@
-#Exercícios para a aula de 17/05
+# Exercícios para a aula de 17/05
 
 Este projeto é uma versão modificada da que criamos em aula para trabalhar com SQL nos programas em Java. Ele deve funcionar sem problemas com o banco de dados que você tem e com a tabela de alunos existente.
 
@@ -7,7 +7,7 @@ Você deve baixar o projeto e commitar suas alterações em uma branch como seu 
 
 Depois de baixar o projeto e criar a sua branch, importe o projeto no eclipse execute as tarefas abaixo.
 
-#Tarefas
+# Tarefas
 
 * Altere a classe "DBConnection" e configure as variáveis USER e PASSWD com seu usuário e senha do seu banco local;
 
@@ -29,4 +29,4 @@ Depois de baixar o projeto e criar a sua branch, importe o projeto no eclipse ex
 
 
 
-#Bom trabalho!
+# Bom trabalho!
