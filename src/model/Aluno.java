@@ -4,12 +4,14 @@ import java.sql.ResultSet;
 import java.util.InputMismatchException;
 
 import main.DadosBancoTasks;
+import tools.DBConnection;
 
 public class Aluno {
 
 	private int idAluno = 0;
 	private String nomeAluno = "";
 	private String emailAluno = "";
+	private String dataNasc = "";
 	private long matriculaAluno = 0;
 
 	public Aluno(long matricula) {
@@ -27,8 +29,11 @@ public class Aluno {
 
 		System.out.println("Informe o e-mail do aluno: ");
 		this.nomeAluno = DadosBancoTasks.scan.nextLine();
-
-		System.out.println("Informe a matricula do aluno: ");
+		
+		System.out.println("Informe a data de nascimento do aluno: ");
+		this.dataNasc = DadosBancoTasks.scan.nextLine();
+		
+		/*System.out.println("Informe a matricula do aluno: ");
 		try {
 
 			this.matriculaAluno = DadosBancoTasks.scan.nextLong();
@@ -36,13 +41,20 @@ public class Aluno {
 
 		} catch (InputMismatchException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
 	public void create() {
-		// TODO Implemente seu código aqui
+		DBConnection conn = new DBConnection();
+		conn.executeSQL("insert into Alunos(Nome,Email,DataNasc) values('" +nomeAluno+"','" +emailAluno+"','" +dataNasc+"')" );
+		System.out.println("Você inseriu um Aluno com Sucesso!");
+		DadosBancoTasks.listaAlunos.add(this);
 	}
+    public void mostraDados(){
+        System.out.println("Dados Cadastrais: ");
+        System.out.println("Nome: "+this.nomeAluno + " \nEmail: "+this.emailAluno + "\nData de Nascimento: "+this.dataNasc);
+    }
 
 	public ResultSet getByMatricula(long matricula) {
 		// TODO Implemente seu código aqui

@@ -11,14 +11,14 @@ public class DBConnection {
 	private Connection conn = null;
 
 	private String USER = "root";
-	private String PASSWD = "d3d3p455wd";
+	private String PASSWD = "root";
 
 	public DBConnection() {
 
 		try {
 
 			conn = DriverManager
-					.getConnection("jdbc:mysql://localhost/dadosbanco?user=" + USER + "&password=" + PASSWD);
+					.getConnection("jdbc:mysql://localhost/LP?user=" + USER + "&password=" + PASSWD);
 
 		} catch (SQLException e) {
 
