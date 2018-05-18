@@ -1,16 +1,23 @@
 package model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import main.DadosBancoTasks;
+import tools.DBConnection;
 
 public class Aluno {
+	
+	public static ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
+	public static Scanner scan = new Scanner(System.in);
 
 	private int idAluno = 0;
 	private String nomeAluno = "";
 	private String emailAluno = "";
 	private long matriculaAluno = 0;
+	private int indice = 0;
 
 	public Aluno(long matricula) {
 		
@@ -26,7 +33,7 @@ public class Aluno {
 		this.nomeAluno = DadosBancoTasks.scan.nextLine();
 
 		System.out.println("Informe o e-mail do aluno: ");
-		this.nomeAluno = DadosBancoTasks.scan.nextLine();
+		this.emailAluno = DadosBancoTasks.scan.nextLine();
 
 		System.out.println("Informe a matricula do aluno: ");
 		try {
@@ -41,12 +48,21 @@ public class Aluno {
 	}
 
 	public void create() {
-		// TODO Implemente seu código aqui
+		DBConnection conn = new DBConnection();
+		conn.executeSQL("insert into Alunos(Nome, Email) values('Gabriel Suterio', 'gabriel.suterio@hotmail.com')");
 	}
 
 	public ResultSet getByMatricula(long matricula) {
-		// TODO Implemente seu código aqui
-
+		long pesquisa = 0;
+		System.out.println("Matrícula do aluno: ");
+    	pesquisa = scan.nextLong();
+    	scan.nextLine();
+    	for (Aluno al : listaAlunos) {
+    		if (al.getMatriculaAluno() == pesquisa){               
+    			al.setIndice(listaAlunos.indexOf(al));  
+    			return al;
+    		}
+    	} 
 		return null;
 	}
 
@@ -81,4 +97,13 @@ public class Aluno {
 	public void setMatriculaAluno(Long matriculaAluno) {
 		this.matriculaAluno = matriculaAluno;
 	}
+	
+	public int getIndice() {
+		return indice;
+	}
+	
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
+	
 }

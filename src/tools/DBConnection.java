@@ -11,14 +11,13 @@ public class DBConnection {
 	private Connection conn = null;
 
 	private String USER = "root";
-	private String PASSWD = "d3d3p455wd";
+	private String PASSWD = "amazingday250193";
 
 	public DBConnection() {
 
 		try {
 
-			conn = DriverManager
-					.getConnection("jdbc:mysql://localhost/dadosbanco?user=" + USER + "&password=" + PASSWD);
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/LP?user=root&password=amazingday250193");
 
 		} catch (SQLException e) {
 
@@ -45,6 +44,7 @@ public class DBConnection {
 				while (rs.next()) {
 					System.out.println(rs.getString(2));
 				}
+				System.out.println(rs);
 			} else {
 				int count = stmt.getUpdateCount();
 				if (count == 1) {
