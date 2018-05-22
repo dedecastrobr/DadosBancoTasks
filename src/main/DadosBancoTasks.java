@@ -13,7 +13,7 @@ public class DadosBancoTasks {
 	
 	public static ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
 	public static List<String> opsMenuPrincipal = Arrays.asList("Inserir Aluno", "Listar Alunos", "Buscar por Matrícula");
-
+	
 	public static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -27,13 +27,15 @@ public class DadosBancoTasks {
 		do{
 			switch(op){
 			case 0:
-				Aluno.create();
+				Aluno al = new Aluno();
+				al.create();
 				break;
 			case 1:
 				listarAlunos();
 				break;
 			case 2:
-				Aluno.getByMatricula();
+				//Aluno aluno = new Aluno();
+				//aluno.getByMatricula();
 				break;
 			case 99:
 				System.out.println("Tchau!");
@@ -53,7 +55,7 @@ public class DadosBancoTasks {
 		System.out.println("Dados dos Alunos:");
 		System.out.println("================================");
 		int pos = 0;
-		for (Aluno aluno : listaAlunos){
+		for (Aluno al : listaAlunos){
 			pos += 1;
 			System.out.println("Número: "+ pos);
 			System.out.println("================================");		

@@ -1,6 +1,9 @@
 package model;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,6 +13,8 @@ import tools.DBConnection;
 
 public class Aluno {
 	
+	private Connection conn = null;
+	
 	public static ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
 	public static Scanner scan = new Scanner(System.in);
 
@@ -17,16 +22,32 @@ public class Aluno {
 	private String nomeAluno = "";
 	private String emailAluno = "";
 	private long matriculaAluno = 0;
-	private int indice = 0;
 
 	public Aluno(long matricula) {
 		
 		//ResultSet que deve ser preenchido
 		ResultSet rs = getByMatricula(matricula);
-		
-		
+		Statement stmt = null;
 
-	}
+		try {
+
+			stmt = conn.createStatement();
+			if (stmt.execute(mz)) {
+				rs = stmt.getResultSet();
+				while (rs.next()) {
+					System.out.println(rs.getString(2));
+				}
+				System.out.println(rs);
+			} else {
+				int count = stmt.getUpdateCount();
+				if (count == 1) {
+					System.out.println("Registro Inserido com sucesso!");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	public Aluno() {
 		System.out.println("Informe o nome do aluno: ");
@@ -47,22 +68,21 @@ public class Aluno {
 
 	}
 
-	public void create() {
-		DBConnection conn = new DBConnection();
-		conn.executeSQL("insert into Alunos(Nome, Email) values('Gabriel Suterio', 'gabriel.suterio@hotmail.com')");
+	public void create(String sql) {
+		conn.dbt = ("insert into Alunos(Nome, Email, Matricula) values('"+this.nomeAluno+"','"+ this.emailAluno+"', "+this.matriculaAluno+")");
+		
 	}
 
 	public ResultSet getByMatricula(long matricula) {
-		long pesquisa = 0;
 		System.out.println("Matrícula do aluno: ");
-    	pesquisa = scan.nextLong();
+		long m = scan.nextLong();
     	scan.nextLine();
-    	for (Aluno al : listaAlunos) {
-    		if (al.getMatriculaAluno() == pesquisa){               
-    			al.setIndice(listaAlunos.indexOf(al));  
-    			return al;
+    	Aluno aluno = new Aluno(m);
+    		if (aluno.getNomeAluno().isEmpty()){               
+    			System.out.println("Deu ruim!");
+    		}else {
+    			System.out.println("Deu bom!");
     		}
-    	} 
 		return null;
 	}
 
@@ -96,14 +116,6 @@ public class Aluno {
 
 	public void setMatriculaAluno(Long matriculaAluno) {
 		this.matriculaAluno = matriculaAluno;
-	}
-	
-	public int getIndice() {
-		return indice;
-	}
-	
-	public void setIndice(int indice) {
-		this.indice = indice;
 	}
 	
 }
