@@ -7,9 +7,9 @@ import main.DadosBancoTasks;
 
 public class Aluno {
 
-	private int idAluno = 0;
-	private String nomeAluno = "";
-	private String emailAluno = "";
+	private int idAluno = 5;
+	private String nomeAluno = "Ingrid";
+	private String emailAluno = "ingrid.trema@hotmail.com";
 	private long matriculaAluno = 0;
 
 	public Aluno(long matricula) {
@@ -41,6 +41,11 @@ public class Aluno {
 	}
 
 	public void create() {
+		
+		Aluno al = new Aluno();
+		al.create();
+		String sql = "insert into Alunos ( nomeAluno,emailAluno,matriculaAluno)" + "values ('Ingrid','ingrid.tremea@hotmail.com','0')"; 
+		
 		// TODO Implemente seu código aqui
 	}
 

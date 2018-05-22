@@ -11,7 +11,7 @@ public class DBConnection {
 	private Connection conn = null;
 
 	private String USER = "root";
-	private String PASSWD = "d3d3p455wd";
+	private String PASSWD = "kirchoff";
 
 	public DBConnection() {
 

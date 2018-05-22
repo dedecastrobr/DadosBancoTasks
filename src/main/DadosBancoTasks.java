@@ -18,6 +18,8 @@ public class DadosBancoTasks {
 	}
 
 	public static void listarAlunos() {
+		
+		String sql = "select * from Alunos";
 
 		// TODO Implemente uma listagem dos alunos cadastrados no banco.
 
